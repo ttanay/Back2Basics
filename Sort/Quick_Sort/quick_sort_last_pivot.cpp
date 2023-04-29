@@ -3,28 +3,49 @@
 using namespace std;
 
 void swap(int &a, int &b){
+  cout << "swapping " << a << "&" << b << endl;
   int c = a;
   a = b;
   b = a;
 }
 
-int partition(int* arr, int left, int right, int pivot){
-  int i = left - 1;
-  for(int j = left; j < right; j++){
-    if(arr[j] <= pivot){
+int partition(int* arr, int left, int right){
+  int pivot = arr[right], plus, minus;
+  int i = left, j = right - 1;
+  while(i <= j){
+    while(arr[i] < pivot && i < right)
       i++;
+
+    while(arr[j] > pivot && j >= left)
+      j--;
+
+    if(arr[i] > pivot && arr[j] < pivot ){
       swap(arr[i], arr[j]);
+      i++;
+      j--;
+    }
+    cout << i << j << endl;
+  }
+  /*for(int j = left; j < right; j++){
+    if(arr[j] <= pivot){
+      q = j;
+
+      //i++;
+      //swap(arr[i], arr[j]);
     }
   }
-  swap(arr[i+1], arr[right]);
-  return i+1;
+  */
+  if(arr[i+1] > arr[right])
+    swap(arr[i+1], arr[right]);
+  cout << i << endl;
+  return i;
 }
 
 void quick_sort(int* arr, int left, int right){
-  cout << "left: " << left << " right: " << right << endl;
-  if(left < right){
-    int pivot = arr[right];
-    int index = partition(arr, left, right, pivot);
+   if(left < right){
+    cout << "left: " << left << " right: " << right << endl;
+    int index = partition(arr, left, right);
+
     quick_sort(arr, left, index-1);
     quick_sort(arr, index+1, right);
   }

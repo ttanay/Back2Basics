@@ -19,9 +19,10 @@ int binarySearch(int* a, int ele,int n){
 }
 
 int main(){
-  int arr[100], n, ele;
+  int *arr, n, ele;
   cout << "Enter size of array" << endl;
   cin >> n;
+  arr = new int[n];
   cout << "Enter a sorted array" << endl;
   for(int i = 0; i < n; i++){
     cin >> arr[i];
@@ -30,4 +31,6 @@ int main(){
   cin >> ele;
   int index = binarySearch(arr, ele, n);
   cout << "Element " << ele << " was found at index " << index << endl;
+  delete arr;
+  return 0;
 }

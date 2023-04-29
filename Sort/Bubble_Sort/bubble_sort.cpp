@@ -19,9 +19,10 @@ void bubble_sort(int* arr, int n){
 }
 
 int main(){
-  int arr[100], n;
+  int *arr, n;
   cout << "Enter size of array" << endl;
   cin >> n;
+  arr = new int[n];
   cout << "Enter array to be sorted" << endl;
   for(int i = 0; i < n; i++){
     cin >> arr[i];
@@ -31,5 +32,6 @@ int main(){
   for(int i = 0; i < n; i++){
     cout << arr[i] << endl;
   }
+  delete arr;
   return 0;
 }
